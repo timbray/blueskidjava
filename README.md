@@ -1,4 +1,4 @@
-# Blueskid-J
+# Blueskid Java
 
 @bluesky Identity tools in Java.
 
