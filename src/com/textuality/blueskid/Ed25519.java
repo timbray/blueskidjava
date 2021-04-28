@@ -12,7 +12,17 @@ import java.util.Base64;
 public class Ed25519 {
 
     /**
-     * Generate a base64-encoded textual representation of an ed25519 public key
+     * Generate a base64-encoded textual representation of an ed25519 public key.
+     *
+     * The representation is the base64 version of the ASN.1 serialization of the
+     *  public key per X509/PKIX rules. In the case of Ed25519 key, which is just
+     *  an unstructured 32-byte array, there's a case to be made that for
+     *  applications that don't require Algorithm Agility, we should bypass the
+     *  PKIX/ASN.1 stuff and just base64 the bytes of the key. For the
+     *  Blueskid project, I don't believe we need Algorithm Agility, but
+     *  unfortunately so far I can't find a way to get at the actual raw
+     *  key bytes inside the java.security.PublicKey object.  Even reflection
+     *  APIs are now impeded by the new Modules stuff.
      *
      * @param key the ed25519 public key to be converted to text
      * @return the base64-encoded string representation of the key
